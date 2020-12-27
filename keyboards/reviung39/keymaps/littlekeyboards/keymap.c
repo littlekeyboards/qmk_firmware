@@ -26,9 +26,9 @@ enum layer_names {
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
     COMMAND_ESCAPE,
-    TAB_LGUI,
+    TAB_LALT,
     NAVIGATION_SPACE,
-    ALT_BACKSPACE
+    ALT_CONTROL
 };
 
 #define NUMBERS  MO(_NUMBERS)
@@ -36,14 +36,13 @@ enum custom_keycodes {
 #define ADJUST MO(_ADJUST)
 
 #define KC_CMES COMMAND_ESCAPE
-#define KC_TBGU TAB_LGUI
+#define KC_TBAL TAB_LALT
 #define KC_NVSP NAVIGATION_SPACE
-#define KC_ALQU ALT_QUOTE
-#define KC_ALBS ALT_BACKSPACE
+#define KC_CTBS ALT_CONTROL
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_reviung39(
-    KC_TBGU,  KC_Q,     KC_W,     KC_E,     KC_R,      KC_T,               KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_ALBS,
+    KC_TBAL,  KC_Q,     KC_W,     KC_E,     KC_R,      KC_T,               KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_CTBS,
     KC_CMES,  KC_A,     KC_S,     KC_D,     KC_F,      KC_G,               KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
     KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,               KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  RSFT_T(KC_ENT),
                                                        NUMBERS,  KC_NVSP,  CODE
@@ -68,6 +67,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______, KC_LEFT, KC_DOWN, KC_RIGHT, _______,           _______, KC_LEFT, KC_DOWN, KC_RIGHT,_______, _______,
     _______,  _______, _______, _______, _______,  _______,           _______, _______, _______, _______, _______, _______,
                                                    _______,  _______, _______
+  ),
+
+    [_ADJUST] = LAYOUT_reviung39(
+    RGB_VAI,   RGB_SAI, RGB_HUI,  RGB_MOD,  XXXXXXX,   RGB_TOG,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    RGB_VAD,   RGB_SAD, RGB_HUD,  RGB_RMOD, XXXXXXX,   XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,            RESET,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+                                                       _______,  XXXXXXX,  _______
   ),
 
 //   [_BLANK] = LAYOUT_reviung39(
@@ -113,12 +119,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case TAB_LGUI:
+        case TAB_LALT:
             if (record->event.pressed) {
                 custom_lt_timer = timer_read();
-                register_code(KC_LGUI);
+                register_code(KC_LALT);
             } else {
-                unregister_code(KC_LGUI);
+                unregister_code(KC_LALT);
                 if (timer_elapsed(custom_lt_timer) < 150 && (!ANOTHER_KEY_PRESSED)) {
                     tap(KC_TAB);
                 }
@@ -137,12 +143,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
-        case ALT_BACKSPACE:
+        case ALT_CONTROL:
             if (record->event.pressed) {
                 custom_lt_timer = timer_read();
-                register_code(KC_LALT);
+                register_code(KC_LGUI);
             } else {
-                unregister_code(KC_LALT);
+                unregister_code(KC_LGUI);
                 if (timer_elapsed(custom_lt_timer) < 150 && (!ANOTHER_KEY_PRESSED)) {
                     tap(KC_BSPC);
                 }
