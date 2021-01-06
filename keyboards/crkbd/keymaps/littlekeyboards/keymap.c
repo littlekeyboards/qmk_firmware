@@ -54,7 +54,7 @@ enum custom_keycodes {
 #define KC_ALTDEL MT(MOD_LALT, KC_DEL) // Tap for enter, hold for left alt
 #define KC_NAVENT NAVIGATION_ENTER
 #define KC_NUMSPC NUMBERS_SPACE
-#define KC_CODSPC CODE_SPACE
+#define KC_CODE MO(_CODE)
 #define KC_CTLESC COMMAND_ESCAPE
 #define KC_ALTCON ALT_CONSTANTS
 #define KC_GUIDEL GUI_T(KC_DEL)
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSEN,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                 ALTDEL,NUMSPC,NAVENT,   SPC,CODSPC,GUIDEL \
+                                 ALTDEL,NUMSPC,NAVENT,   SPC, CODE,GUIDEL \
                               //`--------------------'  `--------------------'
   ),
 
@@ -97,18 +97,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                        ,      ,      ,         ,      ,       \
                               //`--------------------'  `--------------------'
-  ),
-
-  [_CONSTANTS] = LAYOUT( \
-  //,-----------------------------------------------------.                ,----------------------------------------------------------.
-     KC_TO_DEF, S(KC_Q), S(KC_W), S(KC_E), S(KC_R),S(KC_T),                 S(KC_Y), S(KC_U), S(KC_I),   S(KC_O), S(KC_P),   KC_BSPC ,\
-  //|---------+--------+--------+--------+--------+-------|                |-------+--------+--------+----------+----------+---------|
-     KC_TO_DEF, S(KC_A), S(KC_S), S(KC_D), S(KC_F),S(KC_G),                 S(KC_H), S(KC_J), S(KC_K),   S(KC_L), KC_TO_DEF,KC_TO_DEF,\
-  //|---------+--------+--------+--------+--------+-------|                |-------+--------+--------+----------+----------+---------|
-        KC_DEL, S(KC_Z), S(KC_X), S(KC_C), S(KC_V),S(KC_B),                 S(KC_N), S(KC_M),KC_TO_DEF,KC_TO_DEF, KC_TO_DEF,KC_ENDCON,\
-  //|---------+--------+--------+--------+--------+-------+------|  |------+-------+--------+--------+----------+----------+---------|
-                                      KC_TO_DEF, KC_UNDS, KC_UNDS,         ,KC_UNDS, KC_DEL \
-                                   //`---------------------------'  `-----------------------'
   ),
 
   [_NUMBERS_AND_SYMBOLS] = LAYOUT_kc( \
