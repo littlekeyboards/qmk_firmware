@@ -8,13 +8,16 @@
         "device_version": "0.0.1"
     },
     "features": {
-        "bootmagic": false,
-        "command": true,
-        "console": true,
+        "bootmagic": true,
+        "command": false,
+        "console": false,
         "extrakey": true,
         "mousekey": false,
         "nkro": false,
         "rgblight": true
+    },
+    "dynamic_keymap": {
+        "layer_count": 4
     },
     "qmk": {
         "locking": {
